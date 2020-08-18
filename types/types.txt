@@ -1,3 +1,4 @@
+-------------------------------------------------------------------
 Для примитивов создается объект обертка:
 	let str = "Привет";
 	alert(str.toUpperCase());
@@ -9,5 +10,91 @@
 	let str = "Привет";
 	str.test = 5;
 	alert(str.test);
+-------------------------------------------------------------------
+Числа:
+	Бывают двух видов number и BigInt.
+	let billion = 1000000000;
+	let billion = 1e9;
+	let hexadecimal = 0xff;
+	alert(hexadecimal.toString(16));
+	alert(12345..toString());
+	Math.floer, Math.ceil, Math.round
+	45.87.toFixed(1); - округляет число на количество знаков после запятой и возвращает результат
+	alert( 1e500 ); // Infinity - слишком большое число возвращает infinity
+	alert( 0.1 + 0.2 == 0.3 );
+	alert(isNaN(Nan));
+	alert( NaN === NaN ); // false
+	Object.is - тоже самое, что и ===, но для Object.is(Nan, Nan) === true
+	parseInt, parseFloat - методы парсинга данных в js до первого символа, не числа
+-------------------------------------------------------------------	
+Строки:
+	alert(`1 + 2 = ${1 + 2}.`)
+	alert('String'.length);
+	// итерация по символам
+		for (let char of "Hello") {
+ 			alert(char);
+		}
+	// поиск подстроки:
+		let str = 'Widget with id';
+		alert(str.indexOf('Widget')); // возвращает позицию, на которой был найден нужный символ
+	// проверка при помощи побитового отрицания
+		if (~str.indexOf("Widget")) {
+ 	 		alert( 'Совпадение есть' ); // работает
+		}
+	includes, startsWith, endsWith
+	// получение подстроки
+		let str = 'stringify';
+		alert(str.slice(0, 5)); // возвращает строку от start до end
+		alert(str.slice(0, 1));
+		alert(str.slice(-4, -1));
+		alert(str.substr(-4, 2)); // последний параметр - количество возвращаемых символов
+	// 'правильный метод для сравнения строк'
+		alert( 'Österreich'.localeCompare('Zealand') );
+-------------------------------------------------------------------
+Массивы:
+	let arr = new Array();
+	let arr = [];		
+	push - добавление в конец массива
+	pop - удаляет последний элемент массива
+	shift - удаление из начала массива
+	unshift - добавляет элемент в начало массива
+	// перебор значений массива
+		for (let fruit of fruits) {
+  			alert( fruit );
+		}
+	// очистка массива
+		arr.length = 0;	
+	// особый метод для работы с массивом: splice
+		с позиции index удалить deleteCount элементов и вставить элементы на их места
+		arr.splice(index[, deleteCount, elem1, ..., elemN])
+		let arr = ["Я", "изучаю", "JavaScript"];
+		arr.splice(1, 1, [3, 7]);
+	// объединение массивов:
+		let arr1 = ['1', '2', '3'];
+		let arr2 = ['6', '7'];
+		alert(arr1.concat(arr2));
+		Если объект имеет специальное свойство Symbol.isConcatSpreadable, то при использовании его
+		в конкат добавляются только числовые свойства.
+	// сортировка массивов:
+		let arr = [ 1, 20, 15 ];
+		arr.sort((a, b) => a - b );	
+	// поиск в массиве:
+		let users = [
+  			{id: 1, name: "Вася", toString() {return this.name;}},
+  			{id: 2, name: "Петя", toString() {return this.name;}},
+  			{id: 3, name: "Маша", toString() {return this.name;}}
+		];
 
-Числа:		
+		alert(users.find(item => item.id === 2));	
+	// разбить строку на массив:
+		str.split(delim);
+	// массив reduce:
+		let users = [
+  			{id: 11, name: "Вася", toString() {return this.name;}},
+  			{id: -20, name: "Петя", toString() {return this.name;}},
+  			{id: 32, name: "Маша", toString() {return this.name;}}
+		];
+
+		let result = users.reduce(function(previousValue, item, index, array) {
+			return previousValue + item.id;
+		}, 100);	
