@@ -80,3 +80,22 @@
 		Более корректное копирование объекта:
 		let clone = Object.create(Object.getPrototypeOf(obj), Object.getOwnPropertyDescriptors(obj));
 		Object.create(null) - создание объекта без прототипа
+--------------------------------------------------------------------------
+--------------------------------------------------------------------------		
+Пример создания цепочки прототипов с помощью функций:
+	function Parent(name) {
+	    this.name = name;
+	}
+	Parent.prototype.getName = function() {
+	    return this.name;
+	};
+	function Child(name) {
+	    Parent.call(this, name);
+	    this.age = 0;
+	}
+	Child.prototype = Object.create(Parent.prototype); // (1)
+	Child.prototype.constructor = Child;
+	Child.prototype.getAge = function() {
+	    return this.age;
+	};
+	var c = new Child();
