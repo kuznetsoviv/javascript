@@ -217,5 +217,25 @@ Reference type - это комбинация из трех значений (bas
     		[this.name, this.surname] = value.split(" ");
   		}
 	});	
+----------------------------------------------------------
+----------------------------------------------------------
+Примесь - это класс, методы которого предназначены для использования в других класах, 
+	причем без наследования от примеси.
+	Пример миксина:
+		let sayHiMixin = {
+			sayHi() {
+		  	return `Hi ${this.name}`;
+		  }
+		}
 
+		class User {
+		  constructor(name) {
+		  	this.name = name;
+		  }
+		}
+
+		Object.assign(User.prototype, sayHiMixin);
+
+		let user = new User('Igor');
+		alert(user.sayHi());
  
